@@ -6,6 +6,7 @@ use App\Models\Showroom;
 use App\Http\Requests\StoreShowroomRequest;
 use App\Http\Requests\UpdateShowroomRequest;
 use App\Models\showroom_mobil;
+use illuminate\Http\Request;
 
 class ShowroomController extends Controller
 {
@@ -30,15 +31,16 @@ class ShowroomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShowroomRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
+        ddd($data);
         showroom_mobil::create([
-            "nama_mobil" => $data["name"],
-            "brand_mobil" => $data["brand"],
-            "warna_mobil" => $data["warna"],
-            "tipe_mobil" => $data["tipe"],
-            "harga_mobil" => $data["harga"],
+            "nama_mobil"=>$data["name"],
+            "brand_mobil"=>$data["brand"],
+            "warna_mobil"=>$data["warna"],
+            "tipe_mobil"=>$data["tipe"],
+            "harga_mobil"=>$data["harga"],
         ]);
         $showroom = showroom_mobil::all();
         return view('showroom.index', compact('showroom'));
